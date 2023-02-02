@@ -2,7 +2,7 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
-using static Application.Models.IdentityModels;
+
 
 namespace Application.Models
 {

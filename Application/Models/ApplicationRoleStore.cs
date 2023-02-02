@@ -5,23 +5,20 @@ using System.Data.Entity;
 
 namespace Application.Models
 {
-    public partial class IdentityModels
+    public class ApplicationRoleStore
+            : RoleStore<ApplicationRole, string, ApplicationUserRole>,
+            IQueryableRoleStore<ApplicationRole, string>,
+            IRoleStore<ApplicationRole, string>, IDisposable
     {
-        public class ApplicationRoleStore
-        : RoleStore<ApplicationRole, string, ApplicationUserRole>,
-        IQueryableRoleStore<ApplicationRole, string>,
-        IRoleStore<ApplicationRole, string>, IDisposable
+        public ApplicationRoleStore()
+            : base(new IdentityDbContext())
         {
-            public ApplicationRoleStore()
-                : base(new IdentityDbContext())
-            {
-                base.DisposeContext = true;
-            }
+            base.DisposeContext = true;
+        }
 
-            public ApplicationRoleStore(DbContext context)
-                : base(context)
-            {
-            }
+        public ApplicationRoleStore(DbContext context)
+            : base(context)
+        {
         }
     }
 }

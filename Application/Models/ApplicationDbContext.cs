@@ -2,7 +2,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure.Annotations;
 using Microsoft.AspNet.Identity.EntityFramework;
-using static Application.Models.IdentityModels;
 
 namespace Application.Models
 {
