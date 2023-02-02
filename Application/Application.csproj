@@ -188,6 +188,14 @@
     <Compile Include="Migrations\202302020656044_add_Group.designer.cs">
       <DependentUpon>202302020656044_add_Group.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202302020725596_rename_user_table.cs" />
+    <Compile Include="Migrations\202302020725596_rename_user_table.designer.cs">
+      <DependentUpon>202302020725596_rename_user_table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302020729591_rename_groups.cs" />
+    <Compile Include="Migrations\202302020729591_rename_groups.designer.cs">
+      <DependentUpon>202302020729591_rename_groups.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationGroup.cs" />
@@ -425,6 +433,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202302020656044_add_Group.resx">
       <DependentUpon>202302020656044_add_Group.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302020725596_rename_user_table.resx">
+      <DependentUpon>202302020725596_rename_user_table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302020729591_rename_groups.resx">
+      <DependentUpon>202302020729591_rename_groups.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
