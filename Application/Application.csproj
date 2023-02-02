@@ -184,6 +184,10 @@
     <Compile Include="Migrations\202302020220306_init.designer.cs">
       <DependentUpon>202302020220306_init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202302020656044_add_Group.cs" />
+    <Compile Include="Migrations\202302020656044_add_Group.designer.cs">
+      <DependentUpon>202302020656044_add_Group.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationGroup.cs" />
@@ -418,6 +422,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202302020220306_init.resx">
       <DependentUpon>202302020220306_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302020656044_add_Group.resx">
+      <DependentUpon>202302020656044_add_Group.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
