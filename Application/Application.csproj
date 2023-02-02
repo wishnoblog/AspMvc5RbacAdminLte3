@@ -164,15 +164,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\ApplicationGroupManager.cs" />
+    <Compile Include="App_Start\ApplicationRoleManager.cs" />
+    <Compile Include="App_Start\ApplicationSignInManager.cs" />
+    <Compile Include="App_Start\ApplicationUserManager.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Areas\Identity\Controllers\RolesAdminController.cs" />
-    <Compile Include="Areas\Identity\Controllers\UserAdminController.cs" />
-    <Compile Include="Areas\Identity\IdentityAreaRegistration.cs" />
-    <Compile Include="Areas\Identity\ViewModels\AdminViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -186,12 +186,23 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
-    <Compile Include="Models\ApplicationDbInitializer.cs" />
+    <Compile Include="Models\ApplicationGroup.cs" />
+    <Compile Include="Models\ApplicationGroupRole.cs" />
+    <Compile Include="Models\ApplicationGroupStore.cs" />
+    <Compile Include="Models\ApplicationRole.cs" />
+    <Compile Include="Models\ApplicationRoleStore.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\ApplicationUserGroup.cs" />
+    <Compile Include="Models\ApplicationUserStore.cs" />
+    <Compile Include="Models\GroupStoreBase.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
+    <Compile Include="ViewModels\GroupViewModel.cs" />
+    <Compile Include="ViewModels\EditUserViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
+    <Compile Include="ViewModels\RoleViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\css\bootstrap.min.css" />
@@ -247,19 +258,6 @@
     <Content Include="Assets\js\jquery-3.4.1.min.map" />
     <Content Include="Assets\js\bootstrap.min.js.map" />
     <Content Include="Assets\css\bootstrap.min.css.map" />
-    <Content Include="Areas\Identity\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Identity\Views\Web.config" />
-    <Content Include="Areas\Identity\Views\UsersAdmin\Index.cshtml" />
-    <Content Include="Areas\Identity\Views\UsersAdmin\Edit.cshtml" />
-    <Content Include="Areas\Identity\Views\UsersAdmin\Details.cshtml" />
-    <Content Include="Areas\Identity\Views\UsersAdmin\Delete.cshtml" />
-    <Content Include="Areas\Identity\Views\UsersAdmin\Create.cshtml" />
-    <Content Include="Areas\Identity\Views\Shared\_LayoutAdmin.cshtml" />
-    <Content Include="Areas\Identity\Views\RolesAdmin\Index.cshtml" />
-    <Content Include="Areas\Identity\Views\RolesAdmin\Edit.cshtml" />
-    <Content Include="Areas\Identity\Views\RolesAdmin\Details.cshtml" />
-    <Content Include="Areas\Identity\Views\RolesAdmin\Delete.cshtml" />
-    <Content Include="Areas\Identity\Views\RolesAdmin\Create.cshtml" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
