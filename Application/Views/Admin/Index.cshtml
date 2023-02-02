@@ -2,8 +2,17 @@
     Layout = "~/Views/Shared/_AdminLte3.cshtml";
 }
 
-<h1>測試</h1>
+<h1>歐大大後台</h1>
+<div class="card">
+    <div class="card-body">
+        <a class="btn btn-outline-primary" href="@Url.Action("Index","RolesAdmin")">權限管理</a>
 
-@section  script{
-    <script> alert("hi");</script>    
-}
+        <a class="btn btn-outline-primary" href="@Url.Action("Index","GroupsAdmin")">角色管理</a>
+
+        <a class="btn btn-outline-primary" href="@Url.Action("Index","UsersAdmin")">帳號管理</a>
+    </div>
+    
+</div>
+    @section  script{
+
+    }
