@@ -1,52 +1,63 @@
 ﻿@model Application.ViewModels.EditUserViewModel
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "編輯帳號資料";
+    Layout = "~/Views/Shared/_AdminLte3.cshtml";
 }
-
-<h2>Edit.</h2>
-
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="form-horizontal">
 
-    <div class="form-horizontal">
-        <h4>Edit User Form.</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.Id)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-               @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-               @Html.ValidationMessageFor(model => model.Email)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.Label("This User belongs to the following Groups", new { @class = "control-label col-md-2" })
-            <span class=" col-md-10">
-                @foreach (var item in Model.GroupsList)
-                {
-                    <div>
-                        <input type="checkbox" name="selectedGroups" value="@item.Value" checked="@item.Selected" class="checkbox-inline" />
-                        @Html.Label(item.Text, new { @class = "control-label" })
+                <div class="card">
+                    <div class="card-header">
+                        基本資料
                     </div>
-                }
-            </span>
-        </div>
+                    <div class="card-body">
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(model => model.Id)
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Email, new { @class = "control-label" })
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control col-md-4" })
+                            @Html.ValidationMessageFor(model => model.Email)
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        所屬群組
+                    </div>
+                    <div class="card-body">
+                        @foreach (var item in Model.GroupsList)
+                        {
+                            <div>
+                                <label>
+                                    <input type="checkbox" name="selectedGroups" value="@item.Value" checked="@item.Selected" class="checkbox-inline mr-1" />
+                                    @Html.Encode(item.Text)
+                                </label>
+
+
+                            </div>
+                        }
+                    </div>
+                </div>
+                
+
+                <div class="form-group">
+                    <a class="btn btn-warning" href="@Url.Action("Index")"><i class="fas fa-arrow-left"></i> 返回</a>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> 存檔 </button>
+                </div>
             </div>
         </div>
     </div>
+</div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

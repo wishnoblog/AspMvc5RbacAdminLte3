@@ -13,7 +13,7 @@ namespace Application.ViewModels
         }
         public string Id { get; set; }
         [Required(AllowEmptyStrings = false)]
-        [Display(Name = "Email")]
+        [Display(Name = "信箱")]
         [EmailAddress]
         public string Email { get; set; }
 

@@ -1,6 +1,7 @@
 ﻿@model Application.ViewModels.RegisterViewModel
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "新增帳號";
+    Layout = "~/Views/Shared/_AdminLte3.cshtml";
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -8,7 +9,7 @@
 @using (Html.BeginForm("Create", "UsersAdmin", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
+
     <hr />
     @Html.ValidationSummary("", new { @class = "text-error" })
     <div class="form-group">
@@ -34,13 +35,17 @@
             Select User Group
         </label>
         <div class="col-md-10">
-            @foreach (var item in (SelectList)ViewBag.GroupsList)
+            @if (ViewBag.GroupsList != null)
             {
-                <div>
-                    <input type="checkbox" name="selectedGroups" value="@item.Value" class="checkbox-inline" />
-                    @Html.Label(item.Text, new { @class = "control-label" })
-                </div>
+                foreach (var item in (SelectList)ViewBag.GroupsList)
+                {
+                    <div>
+                        <input type="checkbox" name="selectedGroups" value="@item.Value" class="checkbox-inline" />
+                        @Html.Label(item.Text, new { @class = "control-label" })
+                    </div>
+                }
             }
+
         </div>
     </div>
     <div class="form-group">

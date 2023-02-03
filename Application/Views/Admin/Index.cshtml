@@ -1,18 +1,21 @@
 ﻿@{
     Layout = "~/Views/Shared/_AdminLte3.cshtml";
+    ViewBag.Title = "歐大大後台";
 }
 
-<h1>歐大大後台</h1>
-<div class="card">
-    <div class="card-body">
-        <a class="btn btn-outline-primary" href="@Url.Action("Index","RolesAdmin")">權限管理</a>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <a class="btn btn-outline-primary" href="@Url.Action("Index","RolesAdmin")">權限管理</a>
 
-        <a class="btn btn-outline-primary" href="@Url.Action("Index","GroupsAdmin")">角色管理</a>
+            <a class="btn btn-outline-primary" href="@Url.Action("Index","GroupsAdmin")">角色管理</a>
 
-        <a class="btn btn-outline-primary" href="@Url.Action("Index","UsersAdmin")">帳號管理</a>
+            <a class="btn btn-outline-primary" href="@Url.Action("Index","UsersAdmin")">帳號管理</a>
+        </div>
+
     </div>
-    
 </div>
-    @section  script{
 
-    }
+@section  Scripts{
+
+}

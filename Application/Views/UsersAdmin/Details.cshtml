@@ -1,45 +1,72 @@
 ﻿@model Application.Models.ApplicationUser
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "帳號詳情";
+    Layout = "~/Views/Shared/_AdminLte3.cshtml";
 }
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    基本資料
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped table-hover">
+                        
+                        <tbody>
+                            <tr>
+                                <th style="width:120px">
+                                    帳號名稱
+                                </th>
+                                <td>
+                                    @Html.DisplayFor(model => model.UserName)
+                                </td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>                    
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    所屬群組
+                </div>
+                <div class="card-body">
+                    @if (ViewBag.GroupNames.Count == 0)
+                    {
+                        <p>未屬任何群組</p>
+                    }
+                    else
+                    {
+                        <table class="table table-borderless">
 
-<h2>Details.</h2>
+                            <tbody>
+                                @foreach (var item in ViewBag.GroupNames)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.Encode(item)
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
 
-<div>
-    <h4>User</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-    </dl>
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <a class="btn btn-warning" href="@Url.Action("Index")"><i class="fas fa-arrow-left"></i>返回</a>
+            <a class="btn btn-default" href="@Url.Action("Edit",new { id = Model.Id })"><i class="fas fa-pen"></i>編輯</a>
+        </div>
+    </div>    
+    
 </div>
-<h4>List ofGroups this user belongs to:</h4>
-@if (ViewBag.GroupNames.Count == 0)
-{
-    <hr />
-    <p>No GRoups found for this user.</p>
-}
 
-<table class="table">
-
-    @foreach (var item in ViewBag.GroupNames)
-    {
-        <tr>
-            <td>
-                @item
-            </td>
-        </tr>
-    }
-</table>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
 
 
 

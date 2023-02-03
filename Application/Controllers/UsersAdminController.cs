@@ -127,6 +127,8 @@ namespace Application.Controllers
                     return RedirectToAction("Index");
                 }
             }
+            ViewBag.GroupsList =
+               new SelectList(this.GroupManager.Groups, "Id", "Name");
             ViewBag.Groups = new SelectList(
                 await RoleManager.Roles.ToListAsync(), "Id", "Name");
             return View();
