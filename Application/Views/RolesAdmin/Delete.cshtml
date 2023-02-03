@@ -1,32 +1,22 @@
 ﻿@model Application.Models.ApplicationRole
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "刪除權限";
+    Layout = "~/Views/Shared/_AdminLte3.cshtml";
 }
 
-<h2>Delete.</h2>
 
-<h3>Are you sure you want to delete this Role? </h3>
-<p>Deleting this Role will remove all users from this role. It will not delete the users.</p>
+<h1 class="text-danger">⚠️確定要刪除權限  @Html.DisplayFor(model => model.Name) ? ⚠️</h1>
+<p>刪除權限不會刪除相關帳號，但會將帳號的權限同步移除。</p>
 <div>
-    <h4>Role.</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-    </dl>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+        <div class="col-12">
+            <a class="btn btn-warning" href="@Url.Action("Index")"><i class="fas fa-arrow-left"></i>返回</a>
+            <a class="btn btn-default" href="@Url.Action("Edit",new { id = Model.Id })"><i class="fas fa-pen"></i>編輯</a>
         </div>
     }
 </div>

@@ -1,45 +1,59 @@
 ﻿@model Application.Models.ApplicationRole
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "權限詳情";
+    Layout = "~/Views/Shared/_AdminLte3.cshtml";
 }
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th width="100px">權限</th>
+                            <td>@Html.DisplayFor(model => model.Name)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
 
-<h2>Details.</h2>
+            <div class="card">
+                <div class="card-header">關聯帳號</div>
+                <div class="card-body">
+                    @if (ViewBag.UserCount == 0)
+                    {
 
-<div>
-    <h4>Roles.</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-    </dl>
+
+                        <hr />
+
+                        <p>無使用者包含此帳號</p>
+                    }
+                    else
+                    {
+                        <ul>
+                            @foreach (var item in ViewBag.Users)
+                            {
+                                <li>
+                                    @item.UserName
+                                </li>
+
+                            }
+                        </ul>
+
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<h4>List of users in this role</h4>
-@if (ViewBag.UserCount == 0)
-{
-    <hr />
-    <p>No users found in this role.</p>
-}
 
-<table class="table">
-
-    @foreach (var item in ViewBag.Users)
-    {
-        <tr>
-            <td>
-                @item.UserName
-            </td>
-        </tr>
-    }
-</table>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div class="col-12">
+    <a class="btn btn-warning" href="@Url.Action("Index")"><i class="fas fa-arrow-left"></i>返回</a>
+    <a class="btn btn-default" href="@Url.Action("Edit",new { id = Model.Id })"><i class="fas fa-pen"></i>編輯</a>
+</div>
 
 
 

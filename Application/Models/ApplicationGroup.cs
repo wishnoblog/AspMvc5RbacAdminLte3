@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Application.Models
@@ -26,8 +27,11 @@ namespace Application.Models
         }
 
         [Key]
+        
         public string Id { get; set; }
+        [DisplayName("帳號名稱")]
         public string Name { get; set; }
+        [DisplayName("備註")]
         public string Description { get; set; }
         public virtual ICollection<ApplicationGroupRole> ApplicationRoles { get; set; }
         public virtual ICollection<ApplicationUserGroup> ApplicationUsers { get; set; }

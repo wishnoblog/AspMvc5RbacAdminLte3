@@ -1,55 +1,57 @@
 ﻿@model Application.Models.ApplicationGroup
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "新增角色";
+    Layout = "~/Views/Shared/_AdminLte3.cshtml";
 }
-
-<h2>Create</h2>
-
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        @Html.ValidationSummary(true)
 
-    <div class="form-horizontal">
-        <h4>ApplicationGroup</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name)
-                @Html.ValidationMessageFor(model => model.Name)
-            </div>
-        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Name, new { @class = "control-label" })
+                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Name)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Description, new { @class = "control-label" })
+                            @Html.TextBoxFor(model => model.Description, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Description)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Description)
-                @Html.ValidationMessageFor(model => model.Description)
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-2 control-label">
-                Select Group Roles
-            </label>
-            <div class="col-md-10">
-                @foreach (var item in (SelectList)ViewBag.RolesList)
-                {
-                    <div>
-                        <input type="checkbox" name="SelectedRoles" value="@item.Text" class="checkbox-inline" />
-                        @Html.Label(item.Text, new { @class = "control-label" })
+                        </div>
                     </div>
-                }
-            </div>
-        </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">權限</div>
+                    <div class="card-body">
+                        <ul>
+                            @foreach (var item in (SelectList)ViewBag.RolesList)
+                            {
+                                <li>
+                                    <label>
+                                        <input type="checkbox" name="SelectedRoles" value="@item.Text" class="checkbox-inline" />
+                                        @Html.Encode(item.Text)
+                                    </label>
+                                </li>
+                            }
+                        </ul>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <a class="btn btn-warning" href="@Url.Action("Index")"><i class="fas fa-arrow-left"></i> 返回</a>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> 存檔 </button>
+                </div>
             </div>
         </div>
     </div>
+
 }
 
 <div>

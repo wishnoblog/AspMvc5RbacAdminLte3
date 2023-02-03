@@ -1,61 +1,65 @@
 ﻿@model Application.ViewModels.GroupViewModel
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "編輯角色";
+    Layout = "~/Views/Shared/_AdminLte3.cshtml";
 }
 
-<h2>Edit</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>ApplicationGroup</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.Id)
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                @Html.ValidationSummary(true)
+                @Html.HiddenFor(model => model.Id)
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Name, new { @class = "control-label" })
+                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Name)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name)
-                @Html.ValidationMessageFor(model => model.Name)
-            </div>
-        </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Description, new { @class = "control-label" })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Description)
-                @Html.ValidationMessageFor(model => model.Description)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.Label("Permissions", new { @class = "control-label col-md-2" })
-            <span class=" col-md-10">
-                @foreach (var item in Model.RolesList)
-                {
-                    <div>
-                        <input type="checkbox" name="selectedRoles" value="@item.Text" checked="@item.Selected" class="checkbox-inline" />
-                        @Html.Label(item.Text, new { @class = "control-label" })
+                            @Html.TextBoxFor(model => model.Description, new {@class="form-control"})
+                            @Html.ValidationMessageFor(model => model.Description)
+
+                        </div>
                     </div>
-                }
-            </span>
-        </div>
+                </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <div class="card">
+                    <div class="card-header">關聯權限</div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <ul>
+                                @foreach (var item in Model.RolesList)
+                                {
+                                    <li>
+                                        <label>
+                                            <input type="checkbox" name="selectedRoles" value="@item.Text" checked="@item.Selected" class="checkbox-inline" />
+                                            @Html.Encode(item.Text)
+                                        </label>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <a class="btn btn-warning" href="@Url.Action("Index")"><i class="fas fa-arrow-left"></i> 返回</a>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> 存檔 </button>
+                </div>
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

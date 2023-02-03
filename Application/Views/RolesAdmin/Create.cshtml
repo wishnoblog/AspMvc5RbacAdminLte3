@@ -1,40 +1,36 @@
 ﻿@model Application.ViewModels.RoleViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "新增權限";
+    Layout = "~/Views/Shared/_AdminLte3.cshtml";
 }
-
-<h2>Create.</h2>
-
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>Role.</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Name)
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Name, new { @class = "control-label" })
+                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Name)
+                        </div>
+                        @Html.ValidationSummary(true)
+                    </div>
+                    <div class="card-footer">
+                        <div class="form-group">
+                            <a class="btn btn-warning" href="@Url.Action("Index")"><i class="fas fa-arrow-left"></i> 返回</a>
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> 存檔 </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

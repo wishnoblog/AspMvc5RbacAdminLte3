@@ -4,56 +4,73 @@
     Layout = "~/Views/Shared/_AdminLte3.cshtml";
 }
 
-<h2>@ViewBag.Title.</h2>
+<div class="container-fluid">
+    @using (Html.BeginForm("Create", "UsersAdmin", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="card">
+            <div class="card-header">
+                帳號基本資料
+            </div>
+            <div class="card-body">
+                <table class="table table-hover table-bordered">
+                    <tr>
+                        <th style="width:120px">@Html.LabelFor(m => m.Email, new { @class = "control-label" })</th>
+                        <td>
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control col-md-4" })
+                            @Html.ValidationSummary("", new { @class = "text-error" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.LabelFor(m => m.Password, new { @class = "control-label" })
+                        </th>
+                        <td>
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control col-md-4" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label" })
+                        </th>
+                        <td>
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control col-md-4" })
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">所屬群組</div>
+            <div class="card-body">
+                <ul>
+                    @if (ViewBag.GroupsList != null)
+                    {
+                        foreach (var item in (SelectList)ViewBag.GroupsList)
+                        {
+                            <li>
+                                <label>
+                                    <input type="checkbox" name="selectedGroups" value="@item.Value" class="checkbox-inline" />
+                                    @Html.Encode(item.Text)
+                                </label>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="pb-3">
+            <a class="btn btn-warning" href="@Url.Action("Index")"><i class="fas fa-arrow-left"></i>返回</a>
+            <button type="submit" class="btn btn-primary">
 
-@using (Html.BeginForm("Create", "UsersAdmin", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
+                <i class="fas fa-save"></i>
+                新增
+            </button>
+        </div>
+        
+    }
 
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-error" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-md-2 control-label">
-            Select User Group
-        </label>
-        <div class="col-md-10">
-            @if (ViewBag.GroupsList != null)
-            {
-                foreach (var item in (SelectList)ViewBag.GroupsList)
-                {
-                    <div>
-                        <input type="checkbox" name="selectedGroups" value="@item.Value" class="checkbox-inline" />
-                        @Html.Label(item.Text, new { @class = "control-label" })
-                    </div>
-                }
-            }
-
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Create" />
-        </div>
-    </div>
-}
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
